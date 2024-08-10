@@ -8,6 +8,12 @@ function start() {
     const dateInput = document.getElementById('birthday').value;
     const countdownDate = new Date(dateInput).getTime();
 
+    if (countdownDate < Date.now()) 
+    {
+        alert("Date is Expired");
+        return;
+    }
+
     const countdownInterval = setInterval(() => {
         var now = new Date().getTime();
         var timeDistance = countdownDate - now;
@@ -22,11 +28,6 @@ function start() {
         document.getElementById('hours').innerHTML = hours;
         document.getElementById('minutes').innerHTML = minutes;
         document.getElementById('seconds').innerHTML = seconds;
-        document.getElementById('deciseconds').innerHTML = deciseconds;
-
-        if (distance < 0) {
-            clearInterval(countdownInterval);
-            document.getElementById('demo').innerHTML = "Date is Expired";
-        }
+        document.getElementById('deciseconds').innerHTML = deciseconds;    
     }, 100);
 }
